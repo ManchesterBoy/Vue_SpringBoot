@@ -125,6 +125,11 @@ router.beforeEach((to,from,next) => {
 
   const storeMenus = localStorage.getItem("menus")
 
+  /**
+   * 遇到个问题，重新启动项目时会出现点击系统管理的任何一个页面跳转到404，
+   * 目前已知解决方法，先将下列所写的方法注释掉，编译完成后，再重新放开注释编译
+   * 目前就此解决
+   */
   //未找到路由的情况，如果缓存为空即没有token，则跳回登录页面
   if(!to.matched.length){
     if(storeMenus){   //如果没有正常退出，会导致缓存里还有数据，从而导致跳向404页面
@@ -134,6 +139,7 @@ router.beforeEach((to,from,next) => {
       next("/login")
     }
   }
+
   //其他的情况都放行
   next()
 })
